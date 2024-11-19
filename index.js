@@ -12,7 +12,7 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
 
 // Middlewares
 app.use(helmet());
-app.use(cors({ origin: "https://simple-request-frontend.vercel.app" }));
+app.use(cors({ origin: "https://checker-front.vercel.app" }));
 app.use(limiter);
 
 // Função para validar URLs
