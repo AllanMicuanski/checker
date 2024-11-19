@@ -6,16 +6,13 @@ const rateLimit = require("express-rate-limit");
 
 const app = express();
 
-// Configurações
 const port = process.env.PORT || 3000;
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 100 });
 
-// Middlewares
 app.use(helmet());
 app.use(cors({ origin: "https://checker-front.vercel.app" }));
 app.use(limiter);
 
-// Função para validar URLs
 const isValidUrl = (url) => {
   try {
     new URL(url);
@@ -25,12 +22,10 @@ const isValidUrl = (url) => {
   }
 };
 
-// Rotas
 app.get("/", (req, res) => {
   res.send("Hello, I'm working :D");
 });
 
-// Rota de busca com validação de URL
 app.get(
   "/search",
   (req, res, next) => {
@@ -43,7 +38,6 @@ app.get(
   search
 );
 
-// Iniciar servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
